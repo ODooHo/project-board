@@ -222,4 +222,7 @@ gradle-app.setting
 
 application.yml
 
+###Qclass
+/src/main/generated
+
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all,windows,macos,visualstudiocode

@@ -2,6 +2,7 @@ package com.board.projectboard.repository;
 
 import com.board.projectboard.config.JpaConfig;
 import com.board.projectboard.domain.Article;
+import com.board.projectboard.domain.UserAccount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ class JpaRepositoryTest {
     private ArticleRepository articleRepository;
     @Autowired
     private ArticleCommentRepository articleCommentRepository;
+    @Autowired
+    private UserAccountRepository userAccountRepository;
 
 
 
@@ -37,16 +40,21 @@ class JpaRepositoryTest {
                 .hasSize(123);
     }
 
+
+
     @DisplayName("insert test")
     @Test
-    void givenTestData_whenInserting_thenWorksFine(){
-        //given
+    void givenTestData_whenInserting_thenWorksFine() {
+        // Given
         long previousCount = articleRepository.count();
-        //when
-        Article savedArticle = articleRepository.save(Article.of("new title","new content","#hashtag"));
-        //then
-        long nowCount = articleRepository.count();
-        assertThat(nowCount).isEqualTo(previousCount + 1);
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("dooho", "pw", null, null, null));
+        Article article = Article.of(userAccount, "new article", "new content", "#spring");
+
+        // When
+        articleRepository.save(article);
+
+        // Then
+        assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
 
     }
 

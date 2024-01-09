@@ -18,12 +18,10 @@
   헤더 삽입부
   <hr>
 </header>
-
 <main id="article-main" class="container">
   <header id="article-header" class="py-5 text-center">
     <h1>첫번째 글</h1>
   </header>
-
   <div class="row g-5">
     <section class="col-md-5 col-lg-4 order-md-last">
       <aside>
@@ -35,9 +33,10 @@
     </section>
 
     <article id="article-content" class="col-md-7 col-lg-8">
-      <pre>본문<br><br></pre>
+      <pre>본문</pre>
     </article>
   </div>
+
   <div class="row g-5">
     <section>
       <form class="row g-3">
@@ -50,7 +49,6 @@
           <button class="btn btn-primary" id="comment-submit" type="submit">쓰기</button>
         </div>
       </form>
-
       <ul id="article-comments" class="row col-7">
         <li>
           <div>
@@ -75,8 +73,9 @@
       </ul>
     </section>
   </div>
+
   <div class="row g-5">
-    <nav aria-label="Page navigation example">
+    <nav id="pagination" aria-label="Page navigation">
       <ul class="pagination">
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Previous">
@@ -91,7 +90,6 @@
       </ul>
     </nav>
   </div>
-
 </main>
 
 <footer id="footer">

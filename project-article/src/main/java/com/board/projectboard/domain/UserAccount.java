@@ -19,18 +19,26 @@ import java.util.Objects;
 @Entity
 public class UserAccount extends AuditingFields {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Setter @Column(nullable = false, length = 50) private String userId;
-    @Setter @Column(nullable = false) private String userPassword;
-
-    @Setter @Column(length = 100) private String email;
-    @Setter @Column(length = 100) private String nickname;
-    @Setter private String memo;
+    @Column(length = 50)
+    private String userId;
 
 
-    protected UserAccount() {}
+    @Setter
+    @Column(nullable = false)
+    private String userPassword;
+
+    @Setter
+    @Column(length = 100)
+    private String email;
+    @Setter
+    @Column(length = 100)
+    private String nickname;
+    @Setter
+    private String memo;
+
+
+    protected UserAccount() {
+    }
 
     private UserAccount(String userId, String userPassword, String email, String nickname, String memo) {
         this.userId = userId;
@@ -48,12 +56,12 @@ public class UserAccount extends AuditingFields {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserAccount userAccount)) return false;
-        return id != null && id.equals(userAccount.id);
+        return userId != null && userId.equals(userAccount.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(userId);
     }
 
 }

@@ -2,7 +2,6 @@ package com.board.projectboard.service;
 
 import com.board.projectboard.domain.Article;
 import com.board.projectboard.domain.UserAccount;
-import com.board.projectboard.domain.constant.FormStatus;
 import com.board.projectboard.domain.constant.SearchType;
 import com.board.projectboard.dto.ArticleDto;
 import com.board.projectboard.dto.ArticleWithCommentsDto;
@@ -243,13 +242,13 @@ class ArticleServiceTest {
         // Given
         Long articleId = 1L;
         String userId = "test";
-        willDoNothing().given(articleRepository).deleteByIdAAndUserAccountUserId(articleId,userId);
+        willDoNothing().given(articleRepository).deleteByIdAndUserAccountUserId(articleId,userId);
 
         // When
         sut.deleteArticle(articleId,userId);
 
         // Then
-        then(articleRepository).should().deleteByIdAAndUserAccountUserId(articleId,userId);
+        then(articleRepository).should().deleteByIdAndUserAccountUserId(articleId,userId);
     }
 
 

@@ -27,7 +27,7 @@ public interface ArticleRepository extends
     Page<Article> findByUserAccount_NicknameContaining(String title, Pageable pageable);
     Page<Article> findByHashtag(String title, Pageable pageable);
 
-    void deleteByIdAAndUserAccountUserId(Long articleCommentId, String userId);
+    void deleteByIdAndUserAccountUserId(Long articleCommentId, String userId);
 
 
     @Override

@@ -83,7 +83,7 @@ public class ArticleService {
 
     public void deleteArticle(long articleId,String userId) {
 
-        articleRepository.deleteByIdAAndUserAccountUserId(articleId,userId);
+        articleRepository.deleteByIdAndUserAccountUserId(articleId,userId);
     }
 
     public long getArticleCount() {

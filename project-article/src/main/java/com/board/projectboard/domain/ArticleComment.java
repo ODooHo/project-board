@@ -41,9 +41,8 @@ public class ArticleComment extends AuditingFields{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ArticleComment that = (ArticleComment) o;
-        return id != null && id.equals(that.id);
+        if (!(o instanceof ArticleComment that)) return false;
+        return id != null && id.equals(that.getId());
     }
 
     @Override

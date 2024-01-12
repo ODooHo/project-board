@@ -32,8 +32,6 @@ public class SecurityConfig {
                                         "articles/search-hashtag"
                                 ).permitAll()
                                 .anyRequest().authenticated()
-
-
                 )
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll
                 )

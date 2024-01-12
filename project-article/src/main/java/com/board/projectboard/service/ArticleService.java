@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -37,8 +38,11 @@ public class ArticleService {
             case CONTENT-> articleRepository.findByContentContaining(searchKeyword,pageable).map(ArticleDto::from);
             case ID -> articleRepository.findByUserAccount_UserIdContaining(searchKeyword,pageable).map(ArticleDto::from);
             case NICKNAME -> articleRepository.findByUserAccount_NicknameContaining(searchKeyword,pageable).map(ArticleDto::from);
-            case HASHTAG-> articleRepository.findByHashtag("#"+searchKeyword,pageable).map(ArticleDto::from);
-        };
+            case HASHTAG -> articleRepository.findByHashtagNames(
+                            Arrays.stream(searchKeyword.split(" ")).toList(),
+                            pageable
+                    )
+                    .map(ArticleDto::from);        };
     }
 
     @Transactional(readOnly = true)
@@ -73,7 +77,6 @@ public class ArticleService {
                 if (dto.content() != null) {
                     article.setContent(dto.content());
                 }
-                article.setHashtag(dto.hashtag());
             }
         }catch (EntityNotFoundException e){
             log.warn("게시글 업데이트 실패, 게시글 수정에 필요한 정보를 찾을 수 없습니다. : {}",e.getLocalizedMessage());
@@ -83,7 +86,7 @@ public class ArticleService {
 
     public void deleteArticle(long articleId,String userId) {
 
-        articleRepository.deleteByIdAndUserAccountUserId(articleId,userId);
+        articleRepository.deleteByIdAndUserAccount_UserId(articleId,userId);
     }
 
     public long getArticleCount() {
@@ -96,8 +99,7 @@ public class ArticleService {
             return Page.empty(pageable);
         }
 
-        return articleRepository.findByHashtag(hashtag,pageable).map(ArticleDto::from);
-    }
+        return articleRepository.findByHashtagNames(null, pageable).map(ArticleDto::from);    }
 
     public List<String> getHashtags() {
         return articleRepository.findAllDistinctHashtags();

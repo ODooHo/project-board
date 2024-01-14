@@ -4,7 +4,6 @@ package com.board.projectboard.config;
 import com.board.projectboard.dto.UserAccountDto;
 import com.board.projectboard.dto.security.BoardPrincipal;
 import com.board.projectboard.repository.UserAccountRepository;
-import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

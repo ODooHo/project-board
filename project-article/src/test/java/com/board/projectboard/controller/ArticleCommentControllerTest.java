@@ -1,11 +1,8 @@
 package com.board.projectboard.controller;
 
-import com.board.projectboard.config.SecurityConfig;
 import com.board.projectboard.config.TestSecurityConfig;
 import com.board.projectboard.dto.ArticleCommentDto;
-import com.board.projectboard.dto.ArticleDto;
 import com.board.projectboard.dto.request.ArticleCommentRequest;
-import com.board.projectboard.dto.request.ArticleRequest;
 import com.board.projectboard.service.ArticleCommentService;
 import com.board.projectboard.util.FormDataEncoder;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +13,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.TestExecutionEvent;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 

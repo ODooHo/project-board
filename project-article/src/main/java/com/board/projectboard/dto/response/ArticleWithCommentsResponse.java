@@ -1,7 +1,6 @@
 package com.board.projectboard.dto.response;
 
 
-import com.board.projectboard.domain.Hashtag;
 import com.board.projectboard.dto.ArticleWithCommentsDto;
 import com.board.projectboard.dto.HashtagDto;
 

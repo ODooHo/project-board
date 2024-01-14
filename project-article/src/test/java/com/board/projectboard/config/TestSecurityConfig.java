@@ -2,7 +2,6 @@ package com.board.projectboard.config;
 
 import com.board.projectboard.domain.UserAccount;
 import com.board.projectboard.repository.UserAccountRepository;
-import org.mockito.BDDMockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.event.annotation.BeforeTestMethod;

@@ -1,7 +1,6 @@
 package com.board.projectboard.controller;
 
-import com.board.projectboard.dto.ArticleCommentDto;
-import com.board.projectboard.dto.UserAccountDto;
+
 import com.board.projectboard.dto.request.ArticleCommentRequest;
 import com.board.projectboard.dto.security.BoardPrincipal;
 import com.board.projectboard.service.ArticleCommentService;

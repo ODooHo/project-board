@@ -20,7 +20,7 @@ import java.util.Set;
 public class Hashtag extends AuditingFields {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ToString.Exclude
     @ManyToMany(mappedBy = "hashtags")
@@ -44,13 +44,12 @@ public class Hashtag extends AuditingFields {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Hashtag hashtag = (Hashtag) o;
-        return this.getId() == hashtag.getId();
+        if (!(o instanceof Hashtag that)) return false;
+        return this.getId() != null && this.getId().equals(that.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(this.getId());
     }
 }

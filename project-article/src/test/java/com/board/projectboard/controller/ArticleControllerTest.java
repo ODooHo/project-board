@@ -124,7 +124,7 @@ class ArticleControllerTest {
         then(articleService).should().getArticleCount();
     }
 
-    @Disabled("구현 중")
+    @Disabled("해시태그 검색 페이지만 만드는 것으로 결정")
     @DisplayName("[view] [GET] 게시글 검색 전용 페이지 정상 호출")
     @Test
     public void givenNothing_whenRequestingArticleSearchView_thenReturnsArticleSearchView() throws Exception {

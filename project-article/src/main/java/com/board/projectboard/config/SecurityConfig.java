@@ -28,11 +28,15 @@ public class SecurityConfig {
                                         HttpMethod.GET,
                                         "/",
                                         "/articles",
-                                        "articles/search-hashtag"
+                                        "articles/search-hashtag",
+                                        "/css/**" // 정적 자원에 대한 요청도 허용
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )
-                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll
+                .formLogin((formLogin) ->
+                        formLogin
+                                .defaultSuccessUrl("/articles")
+                                .permitAll()
                 )
                 .logout((logout) -> logout.logoutSuccessUrl("/"))
                 .build();

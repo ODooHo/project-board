@@ -22,14 +22,10 @@ public class JpaConfig {
                 .map(SecurityContext::getAuthentication)
                 .filter(Authentication::isAuthenticated)
                 .map(Authentication::getPrincipal)
-                .map(principal -> {
-                    if (principal instanceof BoardPrincipal) {
-                        return ((BoardPrincipal) principal).getUsername();
-                    }
-                    return null;
-                })
-                .orElseThrow(() -> new UsernameNotFoundException(("유저를 찾을 수 없습니다"))).describeConstable();
+                .map(BoardPrincipal.class::cast)
+                .map(BoardPrincipal::getUsername);
     }
+}
 
 
     /*
@@ -39,10 +35,14 @@ public class JpaConfig {
 
 //    @Bean
 //    public AuditorAware<String> auditorAware() {
-//        return () -> Optional.ofNullable(SecurityContextHolder.getContext()
-//                ).map(SecurityContext::getAuthentication)
+//        return () -> Optional.ofNullable(SecurityContextHolder.getContext())
+//                .map(SecurityContext::getAuthentication)
 //                .filter(Authentication::isAuthenticated)
-//                .map(BoardPrincipal.class::cast)
-//                .map(BoardPrincipal::getUsername);
+//                .map(Authentication::getPrincipal)
+//                .map(principal -> {
+//                    if (principal instanceof BoardPrincipal) {
+//                        return ((BoardPrincipal) principal).getUsername();
+//                    }
+//                    return null;
+//                });
 //    }
-}

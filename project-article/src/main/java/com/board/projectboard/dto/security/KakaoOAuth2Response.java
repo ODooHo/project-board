@@ -39,7 +39,9 @@ public record KakaoOAuth2Response(
             );
         }
 
-        public String nickname() { return this.profile().nickname(); }
+        public String nickname() {
+            return this.profile().nickname();
+        }
     }
 
     public static KakaoOAuth2Response from(Map<String, Object> attributes) {
@@ -54,6 +56,11 @@ public record KakaoOAuth2Response(
         );
     }
 
-    public String email() { return this.kakaoAccount().email(); }
-    public String nickname() { return this.kakaoAccount().nickname(); }
+    public String email() {
+        return this.kakaoAccount().email();
+    }
+
+    public String nickname() {
+        return this.kakaoAccount().nickname();
+    }
 }

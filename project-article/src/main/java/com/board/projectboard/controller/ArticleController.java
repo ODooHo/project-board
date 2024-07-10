@@ -8,7 +8,9 @@ import com.board.projectboard.dto.response.ArticleWithCommentsResponse;
 import com.board.projectboard.dto.security.BoardPrincipal;
 import com.board.projectboard.service.ArticleService;
 import com.board.projectboard.service.PaginationService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,8 +20,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/articles")
 @Controller
@@ -82,7 +88,8 @@ public class ArticleController {
     @PostMapping("/form")
     public String postNewArticle(
             @AuthenticationPrincipal BoardPrincipal boardPrincipal,
-            ArticleRequest articleRequest
+            ArticleRequest articleRequest,
+            HttpServletRequest request
     ) {
         articleService.saveArticle(articleRequest.toDto(boardPrincipal.toDto()));
         return "redirect:/articles";

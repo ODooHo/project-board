@@ -4,6 +4,7 @@ package com.board.projectboard.config;
 import com.board.projectboard.dto.security.BoardPrincipal;
 import com.board.projectboard.dto.security.KakaoOAuth2Response;
 import com.board.projectboard.service.UserAccountService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -35,6 +36,7 @@ import java.util.UUID;
  */
 
 
+@Slf4j
 @Configuration
 public class SecurityConfig {
 
@@ -88,8 +90,9 @@ public class SecurityConfig {
         return userRequest -> {
             OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
+
             KakaoOAuth2Response kakaoResponse = KakaoOAuth2Response.from(oAuth2User.getAttributes());
-            System.out.println(kakaoResponse);
+            log.info(String.valueOf(kakaoResponse));
             String registrationId = userRequest.getClientRegistration().getRegistrationId();
             String providerId = String.valueOf(kakaoResponse.id());
             String username = registrationId + "_" + providerId;
